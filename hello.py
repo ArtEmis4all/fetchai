@@ -12,7 +12,7 @@ def main(source):
     address = Address(entity)
 
     # Setting API up
-    api = LedgerApi('10.168.172.59', 8000)
+    api = LedgerApi('localhost', 8000)
 
     # Need funds to deploy contract
     api.sync(api.tokens.wealth(entity, 100000))
