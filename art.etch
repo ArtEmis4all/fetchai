@@ -1,0 +1,17 @@
+@init
+function createMessage()
+     var scooters = State<Array<String>>("scooters");
+     scooters.set(Array<String>(0));
+endfunction
+
+@query
+function register(owner: String, scooter: String, price: String) : String
+     var scooters = State<Array<String>>("scooters");
+     var objects = scooters.get(Array<String>(0));
+     for(i in 0:objects.count() - 1)
+            if(objects[i] == scooter)
+                  return "FAILED";
+            endif
+     endfor
+     return scooter;
+endfunction

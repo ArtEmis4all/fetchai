@@ -1,0 +1,28 @@
+function main()
+    var account = Address("2ifr5dSFRAnXexBMC3HYEVp3JHSuz7KBPXWDRBV4xdFrqGy6R9");
+    createMessage(account);
+endfunction
+
+@init
+function createMessage(owner : Address)
+   var provider_state = State< Array< String > >("glebs");
+   provider_state.set(Array< String >(0));
+endfunction
+
+@query
+function getSize() : Int32
+    var providers_state = State< Array< String > >("glebs");
+    var providers = providers_state.get( Array< String >(0) );
+    var size = providers.count();
+    return size;
+endfunction
+
+
+@action
+function add(gleb : String)
+    var providers_state = State< Array< String > >("glebs");
+    var providers = providers_state.get( Array< String >(0) );
+
+    providers.append(gleb);
+    providers_state.set(providers);
+endfunction
